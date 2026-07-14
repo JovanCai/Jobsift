@@ -1,0 +1,54 @@
+{
+  "extensionName": { "message": "求人リストフィルター" },
+  "extensionDescription": { "message": "求人検索の結果から、自分のリストに基づいて見たくない会社を非表示にします。すべてローカル処理。会社名リスト・オプションのキーワードルール・誤検出防止のホワイトリスト対応。LinkedIn求人ページで動作。" },
+
+  "popup_title": { "message": "求人リストフィルター" },
+  "popup_blocked_label": { "message": "このページで非表示中" },
+  "popup_show_all": { "message": "このタブでは全て表示" },
+  "popup_open_options": { "message": "設定を開く" },
+  "popup_warn_selectors": { "message": "求人リストのレイアウトが変わった可能性があります。拡張機能の更新をご確認ください。" },
+
+  "options_subtitle": { "message": "求人検索で見たくない会社を非表示にします" },
+
+  "tab_blacklist": { "message": "非表示リスト" },
+  "tab_keywords": { "message": "キーワード" },
+  "tab_whitelist": { "message": "常に表示" },
+  "tab_io": { "message": "インポート / エクスポート" },
+
+  "blacklist_hint": { "message": "このリストに載せた会社は非表示になります。大文字小文字を区別せず、法人格（株式会社 / Inc. / Ltd.）を無視した部分一致です。" },
+  "blacklist_placeholder": { "message": "会社名を追加" },
+
+  "keywords_hint": { "message": "会社名にキーワードが含まれる場合に非表示にします。誤検出の可能性があるため、「常に表示」リストとの併用を推奨します。" },
+  "keywords_enabled_label": { "message": "キーワードルールを有効にする" },
+  "keywords_placeholder": { "message": "キーワードを追加" },
+
+  "whitelist_hint": { "message": "「常に表示」の会社は絶対に非表示になりません（最優先）。キーワードで誤検出される会社の救済に使います。" },
+  "whitelist_placeholder": { "message": "会社名を追加" },
+
+  "io_hint": { "message": "バックアップや別端末への引き継ぎに。" },
+  "io_export": { "message": "JSONにエクスポート" },
+  "io_import": { "message": "JSONからインポート" },
+  "io_reset": { "message": "初期設定に戻す" },
+
+  "btn_add": { "message": "追加" },
+  "btn_delete": { "message": "削除" },
+  "empty_list": { "message": "（空）" },
+
+  "toast_added": { "message": "追加しました: $VAL$", "placeholders": { "val": { "content": "$1" } } },
+  "toast_deleted": { "message": "削除しました: $VAL$", "placeholders": { "val": { "content": "$1" } } },
+  "toast_kw_on": { "message": "キーワードルールを有効にしました" },
+  "toast_kw_off": { "message": "キーワードルールを無効にしました" },
+  "toast_exported": { "message": "エクスポートしました" },
+  "toast_imported": { "message": "インポートしました" },
+  "toast_reset": { "message": "初期設定に戻しました" },
+  "toast_import_failed": { "message": "インポート失敗: $ERR$", "placeholders": { "err": { "content": "$1" } } },
+  "confirm_reset": { "message": "すべての設定を初期状態に戻しますか？" },
+
+  "overlay_blocked": { "message": "非表示中" },
+  "overlay_reason_blacklist": { "message": "リスト" },
+  "overlay_reason_keyword": { "message": "キーワード「$KW$」", "placeholders": { "kw": { "content": "$1" } } },
+  "overlay_peek": { "message": "表示" },
+  "overlay_whitelist": { "message": "常に表示する" },
+
+  "quick_block_title": { "message": "$COMPANY$ を非表示", "placeholders": { "company": { "content": "$1" } } }
+}
