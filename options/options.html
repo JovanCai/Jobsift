@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title data-i18n="extensionName">Job Feed Filter</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <header>
+    <h1 data-i18n="extensionName">Job Feed Filter</h1>
+    <p class="sub" data-i18n="options_subtitle"></p>
+  </header>
+
+  <nav class="tabs">
+    <button data-tab="blacklist" class="active" data-i18n="tab_blacklist"></button>
+    <button data-tab="keywords" data-i18n="tab_keywords"></button>
+    <button data-tab="whitelist" data-i18n="tab_whitelist"></button>
+    <button data-tab="io" data-i18n="tab_io"></button>
+  </nav>
+
+  <section id="tab-blacklist" class="tab active">
+    <p class="hint" data-i18n="blacklist_hint"></p>
+    <div class="input-row">
+      <input type="text" id="bl-input" data-i18n-placeholder="blacklist_placeholder">
+      <button id="bl-add" data-i18n="btn_add"></button>
+    </div>
+    <ul id="bl-list" class="items"></ul>
+  </section>
+
+  <section id="tab-keywords" class="tab">
+    <p class="hint" data-i18n="keywords_hint"></p>
+    <label class="switch">
+      <input type="checkbox" id="kw-enabled">
+      <span data-i18n="keywords_enabled_label"></span>
+    </label>
+    <div class="input-row">
+      <input type="text" id="kw-input" data-i18n-placeholder="keywords_placeholder">
+      <button id="kw-add" data-i18n="btn_add"></button>
+    </div>
+    <ul id="kw-list" class="items"></ul>
+  </section>
+
+  <section id="tab-whitelist" class="tab">
+    <p class="hint" data-i18n="whitelist_hint"></p>
+    <div class="input-row">
+      <input type="text" id="wl-input" data-i18n-placeholder="whitelist_placeholder">
+      <button id="wl-add" data-i18n="btn_add"></button>
+    </div>
+    <ul id="wl-list" class="items"></ul>
+  </section>
+
+  <section id="tab-io" class="tab">
+    <p class="hint" data-i18n="io_hint"></p>
+    <div class="input-row">
+      <button id="export-btn" data-i18n="io_export"></button>
+      <button id="import-btn" data-i18n="io_import"></button>
+      <button id="reset-btn" class="danger" data-i18n="io_reset"></button>
+    </div>
+    <input type="file" id="import-file" accept="application/json" hidden>
+    <pre id="io-preview" hidden></pre>
+  </section>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="../src/i18n.js"></script>
+  <script src="../src/matcher.js"></script>
+  <script src="../src/storage.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
