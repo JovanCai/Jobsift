@@ -1,0 +1,15 @@
+.DS_Store
+node_modules/
+
+# 本地开发资料，不推公开 repo
+docs/
+test/fixtures/
+*.log
+
+# 本地打包产物
+*.zip
+web-store-package/
+
+# 本地下载的 DOM dump（含个人 tracking 参数，不入库）
+Downloads/lrb-dom-dump.json
+tools/local-dump-*.json
