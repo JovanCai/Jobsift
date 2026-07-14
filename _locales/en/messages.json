@@ -1,0 +1,54 @@
+{
+  "extensionName": { "message": "Job Feed Filter" },
+  "extensionDescription": { "message": "Personalize your job search by hiding companies you don't want to see. Fully local — a name list, optional keyword rules, and a whitelist to prevent false positives. Works on LinkedIn Jobs." },
+
+  "popup_title": { "message": "Job Feed Filter" },
+  "popup_blocked_label": { "message": "hidden on this page" },
+  "popup_show_all": { "message": "Show all on this tab" },
+  "popup_open_options": { "message": "Open settings" },
+  "popup_warn_selectors": { "message": "The job list layout may have changed. The extension may need an update." },
+
+  "options_subtitle": { "message": "Hide companies you don't want to see in your job search" },
+
+  "tab_blacklist": { "message": "Hide list" },
+  "tab_keywords": { "message": "Keywords" },
+  "tab_whitelist": { "message": "Always show" },
+  "tab_io": { "message": "Import / Export" },
+
+  "blacklist_hint": { "message": "Companies on this list will be hidden. Matching is case-insensitive and ignores legal-form suffixes (Inc., Ltd., 株式会社)." },
+  "blacklist_placeholder": { "message": "Add a company name" },
+
+  "keywords_hint": { "message": "Any company whose name contains a keyword will be hidden. May cause false positives — pair with the 'Always show' list." },
+  "keywords_enabled_label": { "message": "Enable keyword rules" },
+  "keywords_placeholder": { "message": "Add a keyword" },
+
+  "whitelist_hint": { "message": "Companies on this list are never hidden (highest priority). Use it to rescue companies wrongly caught by a keyword." },
+  "whitelist_placeholder": { "message": "Add a company name" },
+
+  "io_hint": { "message": "Back up your settings or move them to another device." },
+  "io_export": { "message": "Export to JSON" },
+  "io_import": { "message": "Import from JSON" },
+  "io_reset": { "message": "Reset to defaults" },
+
+  "btn_add": { "message": "Add" },
+  "btn_delete": { "message": "Delete" },
+  "empty_list": { "message": "(empty)" },
+
+  "toast_added": { "message": "Added: $VAL$", "placeholders": { "val": { "content": "$1" } } },
+  "toast_deleted": { "message": "Deleted: $VAL$", "placeholders": { "val": { "content": "$1" } } },
+  "toast_kw_on": { "message": "Keyword rules enabled" },
+  "toast_kw_off": { "message": "Keyword rules disabled" },
+  "toast_exported": { "message": "Exported" },
+  "toast_imported": { "message": "Imported" },
+  "toast_reset": { "message": "Reset to defaults" },
+  "toast_import_failed": { "message": "Import failed: $ERR$", "placeholders": { "err": { "content": "$1" } } },
+  "confirm_reset": { "message": "Reset all settings to defaults?" },
+
+  "overlay_blocked": { "message": "Hidden" },
+  "overlay_reason_blacklist": { "message": "list match" },
+  "overlay_reason_keyword": { "message": "keyword \"$KW$\"", "placeholders": { "kw": { "content": "$1" } } },
+  "overlay_peek": { "message": "Show" },
+  "overlay_whitelist": { "message": "Always show this" },
+
+  "quick_block_title": { "message": "Hide $COMPANY$", "placeholders": { "company": { "content": "$1" } } }
+}
