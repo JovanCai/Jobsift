@@ -1,0 +1,54 @@
+{
+  "extensionName": { "message": "职位过滤器" },
+  "extensionDescription": { "message": "根据你自己的名单，在职位搜索里隐藏不想看到的公司。全程本地，支持公司名单、可选的关键词规则和白名单防误伤。适用于 LinkedIn 求人页面。" },
+
+  "popup_title": { "message": "职位过滤器" },
+  "popup_blocked_label": { "message": "本页已隐藏" },
+  "popup_show_all": { "message": "暂时全部显示（本标签页）" },
+  "popup_open_options": { "message": "打开设置" },
+  "popup_warn_selectors": { "message": "职位列表结构可能已变化，扩展可能需要更新。" },
+
+  "options_subtitle": { "message": "在职位搜索里隐藏你不想看到的公司" },
+
+  "tab_blacklist": { "message": "隐藏名单" },
+  "tab_keywords": { "message": "关键词" },
+  "tab_whitelist": { "message": "总是显示" },
+  "tab_io": { "message": "导入 / 导出" },
+
+  "blacklist_hint": { "message": "这些公司会被隐藏。命中方式：包含匹配、大小写不敏感、忽略法人格式（Inc. / Ltd. / 株式会社）。" },
+  "blacklist_placeholder": { "message": "加一个公司名" },
+
+  "keywords_hint": { "message": "公司名含任一关键词即隐藏。可能误伤，请配合「总是显示」名单使用。" },
+  "keywords_enabled_label": { "message": "启用关键词规则" },
+  "keywords_placeholder": { "message": "加一个关键词" },
+
+  "whitelist_hint": { "message": "「总是显示」的公司永远不隐藏（优先级最高）。用来对付关键词误伤。" },
+  "whitelist_placeholder": { "message": "加一个公司名" },
+
+  "io_hint": { "message": "用来备份或跨设备迁移。" },
+  "io_export": { "message": "导出为 JSON" },
+  "io_import": { "message": "从 JSON 导入" },
+  "io_reset": { "message": "重置为默认" },
+
+  "btn_add": { "message": "添加" },
+  "btn_delete": { "message": "删除" },
+  "empty_list": { "message": "（空）" },
+
+  "toast_added": { "message": "已添加：$VAL$", "placeholders": { "val": { "content": "$1" } } },
+  "toast_deleted": { "message": "已删除：$VAL$", "placeholders": { "val": { "content": "$1" } } },
+  "toast_kw_on": { "message": "关键词规则已启用" },
+  "toast_kw_off": { "message": "关键词规则已关闭" },
+  "toast_exported": { "message": "已导出" },
+  "toast_imported": { "message": "已导入" },
+  "toast_reset": { "message": "已重置" },
+  "toast_import_failed": { "message": "导入失败：$ERR$", "placeholders": { "err": { "content": "$1" } } },
+  "confirm_reset": { "message": "确定重置所有配置为默认？" },
+
+  "overlay_blocked": { "message": "已隐藏" },
+  "overlay_reason_blacklist": { "message": "名单命中" },
+  "overlay_reason_keyword": { "message": "关键词「$KW$」", "placeholders": { "kw": { "content": "$1" } } },
+  "overlay_peek": { "message": "显示" },
+  "overlay_whitelist": { "message": "总是显示这家" },
+
+  "quick_block_title": { "message": "隐藏 $COMPANY$", "placeholders": { "company": { "content": "$1" } } }
+}
