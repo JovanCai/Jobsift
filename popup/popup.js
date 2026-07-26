@@ -1,5 +1,5 @@
 (async () => {
-  self.__LRB.i18n.applyI18n();
+  self.__JSF.i18n.applyI18n();
   const $ = (s) => document.querySelector(s);
 
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -9,7 +9,7 @@
   // 不再依赖 badge —— badge 只在实际折叠时更新，被 revealed 的不算
   if (tabId) {
     try {
-      const resp = await chrome.tabs.sendMessage(tabId, { type: 'lrb:ping' });
+      const resp = await chrome.tabs.sendMessage(tabId, { type: 'jsf:ping' });
       if (resp) {
         if (typeof resp.showAllOverride === 'boolean') {
           $('#show-all').checked = resp.showAllOverride;
@@ -31,7 +31,7 @@
   $('#show-all').addEventListener('change', async (e) => {
     if (!tabId) return;
     try {
-      await chrome.tabs.sendMessage(tabId, { type: 'lrb:setShowAll', value: e.target.checked });
+      await chrome.tabs.sendMessage(tabId, { type: 'jsf:setShowAll', value: e.target.checked });
     } catch (_) {}
   });
 
