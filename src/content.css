@@ -1,12 +1,12 @@
 /* Job Feed Filter —— 页面注入样式
-   全部用 !important 隔离，前缀 .lrb-* 防冲突 */
+   全部用 !important 隔离，前缀 .jsf-* 防冲突 */
 
-/* 每个被处理的卡片都必须是 positioned，让 .lrb-quick-block 和 .lrb-overlay
+/* 每个被处理的卡片都必须是 positioned，让 .jsf-quick-block 和 .jsf-overlay
    能 absolute 定位到该卡片自身，而不是飘到某个外层祖先上 */
-[data-lrb-card-id] {
+[data-jsf-card-id] {
   position: relative !important;
 }
-.lrb-blocked {
+.jsf-blocked {
   position: relative !important;
   min-height: 0 !important;
   max-height: 36px !important;
@@ -15,11 +15,11 @@
   border: none !important;
   background: transparent !important;
 }
-.lrb-blocked > *:not(.lrb-overlay) {
+.jsf-blocked > *:not(.jsf-overlay) {
   visibility: hidden !important;
   pointer-events: none !important;
 }
-.lrb-overlay {
+.jsf-overlay {
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
@@ -28,7 +28,7 @@
   z-index: 10 !important;
 }
 
-.lrb-overlay {
+.jsf-overlay {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -43,7 +43,7 @@
   line-height: 1.4 !important;
   margin: 4px 0 !important;
 }
-.lrb-overlay-label {
+.jsf-overlay-label {
   display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
@@ -52,23 +52,23 @@
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
 }
-.lrb-overlay-icon {
+.jsf-overlay-icon {
   color: #a33 !important;
   font-weight: bold !important;
 }
-.lrb-overlay-label strong {
+.jsf-overlay-label strong {
   color: #333 !important;
   font-weight: 600 !important;
 }
-.lrb-overlay-reason {
+.jsf-overlay-reason {
   color: #999 !important;
 }
-.lrb-overlay-actions {
+.jsf-overlay-actions {
   display: inline-flex !important;
   gap: 6px !important;
   flex-shrink: 0 !important;
 }
-.lrb-btn {
+.jsf-btn {
   padding: 2px 8px !important;
   background: #fff !important;
   border: 1px solid #d0d0d0 !important;
@@ -78,20 +78,20 @@
   cursor: pointer !important;
   line-height: 1.4 !important;
 }
-.lrb-btn:hover {
+.jsf-btn:hover {
   background: #eee !important;
   color: #222 !important;
 }
 
 /* 被临时展开的卡片：加个左侧色条提醒 */
-.lrb-revealed {
+.jsf-revealed {
   position: relative !important;
   box-shadow: inset 3px 0 0 0 #e0a800 !important;
 }
 
 /* 未屏蔽卡片右上角的一键屏蔽按钮 —— 模仿 LinkedIn 自身的 dismiss 按钮：
    32×32、透明背景、无边框、hover 时圆形淡灰底 rgba(0,0,0,0.08) */
-.lrb-quick-block {
+.jsf-quick-block {
   position: absolute !important;
   top: 6px !important;
   right: 44px !important;   /* 让开 LinkedIn 自己的 ✕ dismiss 按钮 */
@@ -109,20 +109,20 @@
   cursor: pointer !important;
   transition: background 0.15s, color 0.15s !important;
 }
-.lrb-quick-block:hover {
+.jsf-quick-block:hover {
   background: rgba(0,0,0,0.08) !important;
   color: #cc1016 !important;
 }
-.lrb-quick-block:focus-visible {
+.jsf-quick-block:focus-visible {
   outline: 2px solid #0a66c2 !important;
   outline-offset: 2px !important;
 }
-.lrb-quick-block svg {
+.jsf-quick-block svg {
   display: block !important;
   pointer-events: none !important;
 }
 /* 深色模式适配（LinkedIn 支持 prefers-color-scheme） */
 @media (prefers-color-scheme: dark) {
-  .lrb-quick-block { color: rgba(255,255,255,0.7) !important; }
-  .lrb-quick-block:hover { background: rgba(255,255,255,0.12) !important; color: #ff6b6b !important; }
+  .jsf-quick-block { color: rgba(255,255,255,0.7) !important; }
+  .jsf-quick-block:hover { background: rgba(255,255,255,0.12) !important; color: #ff6b6b !important; }
 }
