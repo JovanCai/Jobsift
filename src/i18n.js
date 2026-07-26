@@ -20,6 +20,6 @@
     });
   }
 
-  root.__LRB = root.__LRB || {};
-  root.__LRB.i18n = { t, applyI18n };
+  root.__JSF = root.__JSF || {};
+  root.__JSF.i18n = { t, applyI18n };
 })(typeof self !== 'undefined' ? self : this);
