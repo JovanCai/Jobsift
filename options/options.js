@@ -1,5 +1,5 @@
 (() => {
-  const { storage, i18n } = self.__LRB;
+  const { storage, i18n } = self.__JSF;
   const t = i18n.t;
 
   let cfg = null;
@@ -103,11 +103,10 @@
       const json = JSON.stringify(cfg, null, 2);
       els.io.preview.textContent = json;
       els.io.preview.hidden = false;
-      // 同时触发下载
       const blob = new Blob([json], { type: 'application/json' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = `lrb-config-${new Date().toISOString().slice(0, 10)}.json`;
+      a.download = `jsf-config-${new Date().toISOString().slice(0, 10)}.json`;
       a.click();
       URL.revokeObjectURL(a.href);
       toast(t('toast_exported'));
@@ -120,9 +119,8 @@
       try {
         const text = await file.text();
         const obj = JSON.parse(text);
-        // 基本校验
         if (!Array.isArray(obj.blacklist) || !Array.isArray(obj.keywords) || !Array.isArray(obj.whitelist)) {
-          throw new Error('缺字段 blacklist/keywords/whitelist');
+          throw new Error('missing blacklist/keywords/whitelist field');
         }
         await storage.save({ ...storage.DEFAULT_CONFIG, ...obj });
         toast(t('toast_imported'));
