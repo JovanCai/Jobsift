@@ -5,7 +5,7 @@
 在项目根目录跑：
 
 ```bash
-zip -r job-feed-filter.zip \
+zip -r jobsift.zip \
   manifest.json \
   _locales/ \
   icons/ \
@@ -17,7 +17,7 @@ zip -r job-feed-filter.zip \
 
 ## 排除的文件
 
-不打包进 zip 的内容（减小体积、避免开发资料泄露）：
+不打包进 zip 的开发内容：
 
 - `docs/` — 本地设计文档
 - `test/` — 单元测试和 DOM fixtures
@@ -40,6 +40,6 @@ zip -r job-feed-filter.zip \
 
 ## 品牌 / 商标注意
 
-- 扩展名、描述、图标里不出现 LinkedIn 品牌元素
-- 描述里可以说 "Works on LinkedIn Jobs" 这种被公认的合理描述性使用
-- 不要在 Web Store 标题里加 LinkedIn 字样，避免商标审查
+- 扩展名、描述、图标里都不用第三方品牌元素
+- 描述里可以用 "Works on LinkedIn Jobs" 这种描述性合理使用
+- 不要在 Web Store 标题里加平台名字样，避免商标审查
