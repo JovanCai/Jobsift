@@ -13,7 +13,7 @@ Manifest V3，无构建、无依赖。全程本地，配置通过 `chrome.storag
 ## 安装
 
 ```
-git clone https://github.com/JovanCai/job-feed-filter.git
+git clone https://github.com/JovanCai/jobsift.git
 ```
 
 Chrome 里：
