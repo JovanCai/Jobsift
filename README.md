@@ -13,7 +13,7 @@ Manifest V3. No build step. No dependencies. Local only — settings sync via `c
 ## Install
 
 ```
-git clone https://github.com/JovanCai/job-feed-filter.git
+git clone https://github.com/JovanCai/jobsift.git
 ```
 
 In Chrome:
