@@ -4,13 +4,13 @@
  * 已确认（截图观察 + v1-v4 数据）：
  *   - class 全是编译期哈希
  *   - 卡片不是 <a>，标题是纯 div/span + 点击改 URL query string（currentJobId）
- *   - 每张卡片右上角有 ✕ dismiss 按钮 —— 这是 LinkedIn 自带屏蔽，且每张卡片必有一个
+ *   - 每张卡片右上角有 ✕ dismiss 按钮 —— 每张列表卡片必有一个
  *   - 卡片文本行：标题 / 公司名 / 地点 / 状态 / 时间戳 / 应聘标签
- *   - 公司名与地点是分开两行，不是 v2 那个 "公司 • 地点" 格式
+ *   - 公司名与地点是分开两行
  *
  * v5 用 ✕ dismiss 按钮作卡片锚点。这个按钮：
  *   - 每张列表卡片必有
- *   - 详情面板没有（详情面板另有一个 dismiss，但形态不同）
+ *   - 详情面板没有
  *   - aria-label 是国际化的，需要探测实际值
  *
  * 用法：
@@ -30,7 +30,6 @@
           .map((a) => [a.name, a.value])
       );
 
-    // ---- 1. 所有 button 的 aria-label 分布：找到 dismiss 按钮 ----
     const buttons = [...document.querySelectorAll('button')];
     const buttonLabels = {};
     for (const b of buttons) {
@@ -51,8 +50,6 @@
       .map(([label, s]) => ({ label, count: s.count, samples: s.samples }))
       .sort((a, b) => b.count - a.count);
 
-    // ---- 2. 定位 LazyColumn，遍历它里面的所有 button ----
-    // LazyColumn 有多个（3 个），列表那一个的特征：内部按钮最多、高度可滚动
     const lazyColumns = [...document.querySelectorAll('[data-component-type="LazyColumn"]')];
     const lazyColStats = lazyColumns.map((lc, i) => {
       const rect = lc.getBoundingClientRect();
@@ -63,7 +60,6 @@
         scrollHeight: lc.scrollHeight,
         scrollable: lc.scrollHeight > lc.clientHeight + 10,
         buttonCount: lc.querySelectorAll('button').length,
-        // 内部 aria-label 分布
         buttonLabels: (() => {
           const map = {};
           for (const b of lc.querySelectorAll('button')) {
@@ -78,14 +74,11 @@
       };
     });
 
-    // 选择"列表 LazyColumn"：可滚动 + 按钮最多的那个
     const listLazyCol = lazyColumns
       .filter((lc) => lc.scrollHeight > lc.clientHeight + 10)
       .sort((a, b) => b.querySelectorAll('button').length - a.querySelectorAll('button').length)[0]
       || lazyColumns[0];
 
-    // ---- 3. 在列表 LazyColumn 里，找重复出现最多的 aria-label ----
-    // 卡片级操作按钮（dismiss / save）必然每张卡片都有一个，count 会等于可见卡片数
     let cardRoots = [];
     let cardSamples = [];
     if (listLazyCol) {
@@ -96,12 +89,10 @@
         if (!l) continue;
         labelCounts[l] = (labelCounts[l] || 0) + 1;
       }
-      // 按 count 分组，重复次数最多的多个 label 都可能是卡片级按钮
       const topLabels = Object.entries(labelCounts)
         .sort((a, b) => b[1] - a[1])
         .slice(0, 10);
 
-      // 选取尺寸最小（≈ 20-40px 的图标按钮，多半是 ✕ dismiss）且 count ≥ 2 的 label
       let anchorLabel = null;
       for (const [label, count] of topLabels) {
         if (count < 2) continue;
@@ -114,8 +105,6 @@
         }
       }
 
-      // 找到锚点按钮后，每个按钮向上爬到「其祖先内的锚点按钮数从 1 变为 2」的那一层的上一层
-      // 也就是找到「刚好包住 1 个锚点按钮」的最大祖先
       if (anchorLabel) {
         const anchorBtns = inListButtons.filter(
           (b) => b.getAttribute('aria-label') === anchorLabel
@@ -181,7 +170,6 @@
       }
     }
 
-    // ---- 4. 详情面板 ----
     const detailScreen = document.querySelector('[data-sdui-screen]');
     const detailInfo = detailScreen
       ? {
@@ -216,7 +204,7 @@
       detailInfo,
     };
 
-    console.log('=== LRB DOM DUMP v5 ===');
+    console.log('=== JSF DOM DUMP v5 ===');
     console.log('viewport:', window.innerWidth, 'x', window.innerHeight);
     console.log('识别到的卡片数:', cardRoots.length);
     if (cardSamples.length) {
@@ -227,10 +215,10 @@
     const blob = new Blob([JSON.stringify(dump, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'lrb-dom-dump.json';
+    a.download = 'jsf-dom-dump.json';
     a.click();
     URL.revokeObjectURL(a.href);
 
-    console.log('✅ 已下载 lrb-dom-dump.json');
+    console.log('✅ 已下载 jsf-dom-dump.json');
   }, 6000);
 })();
