@@ -4,8 +4,8 @@
   const mod = factory();
   if (typeof module !== 'undefined' && module.exports) module.exports = mod;
   else {
-    root.__LRB = root.__LRB || {};
-    root.__LRB.matcher = mod;
+    root.__JSF = root.__JSF || {};
+    root.__JSF.matcher = mod;
   }
 })(typeof self !== 'undefined' ? self : this, function () {
   // 全角 → 半角（ASCII 部分 + 全角空格）
