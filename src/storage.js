@@ -1,7 +1,8 @@
 // Job Feed Filter —— chrome.storage.sync 读写 + 默认配置
 
 (function (root) {
-  const KEY = 'lrb_config';
+  const KEY = 'jsf_config';
+  const LEGACY_KEY = 'lrb_config';    // 早期开发版本用过的 key；升级时一次性迁移到 KEY
 
   // 出厂配置：完全空白。用户主动加公司名或开启关键词规则后才产生任何屏蔽。
   // 关键词内置了一份「建议清单」但默认关闭 —— 用户在设置页可以一键启用后再调整。
@@ -19,8 +20,15 @@
 
   async function load() {
     return new Promise((resolve) => {
-      chrome.storage.sync.get([KEY], (obj) => {
-        const stored = obj && obj[KEY];
+      chrome.storage.sync.get([KEY, LEGACY_KEY], (obj) => {
+        let stored = obj && obj[KEY];
+        // 一次性从老 key 迁移过来
+        if (!stored && obj && obj[LEGACY_KEY]) {
+          stored = obj[LEGACY_KEY];
+          chrome.storage.sync.set({ [KEY]: stored }, () => {
+            chrome.storage.sync.remove(LEGACY_KEY);
+          });
+        }
         if (!stored) return resolve({ ...DEFAULT_CONFIG });
         // 缺字段用默认值兜底（未来加字段时不用写迁移）
         resolve({ ...DEFAULT_CONFIG, ...stored });
@@ -68,6 +76,6 @@
 
   const api = { load, save, addTo, removeFrom, onChange, DEFAULT_CONFIG, KEY };
 
-  root.__LRB = root.__LRB || {};
-  root.__LRB.storage = api;
+  root.__JSF = root.__JSF || {};
+  root.__JSF.storage = api;
 })(typeof self !== 'undefined' ? self : this);
