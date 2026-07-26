@@ -1,47 +1,50 @@
 #!/usr/bin/env python3
 """
-Job Feed Filter — 图标生成脚本。
-设计（去商标化）：
-  - 深青色圆角方块背景（不用 LinkedIn 蓝，避免品牌联想）
-  - 白色漏斗形状（filter 的通用符号）
-  - 漏斗颈下方一颗小红点，表示"过滤掉的一份"
+Job Feed Filter — icon generator.
+
+Design: 3 list rows on a dark background, the middle row struck through
+in red. Reads at 16x16 and doesn't rely on any specific brand color.
 """
 from PIL import Image, ImageDraw
 import os
 
 OUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'icons')
 
-BG = (30, 41, 59, 255)       # slate-800，中性深色
-FUNNEL = (245, 245, 245, 255)
-DOT = (204, 16, 22, 255)
+BG = (17, 24, 39, 255)        # gray-900
+ROW = (240, 240, 240, 255)    # off-white
+STRIKE = (220, 38, 38, 255)   # red-600
 
 
 def make_icon(size):
     img = Image.new('RGBA', (size, size), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
 
-    # 圆角背景
-    radius = max(3, size // 6)
+    # Rounded background
+    radius = max(2, size // 6)
     draw.rounded_rectangle([0, 0, size - 1, size - 1], radius=radius, fill=BG)
 
-    # 漏斗（六边形轮廓）
-    s = size
-    funnel = [
-        (0.16 * s, 0.24 * s),   # 左上
-        (0.84 * s, 0.24 * s),   # 右上
-        (0.58 * s, 0.52 * s),   # 右上收窄
-        (0.58 * s, 0.72 * s),   # 右下柄
-        (0.42 * s, 0.72 * s),   # 左下柄
-        (0.42 * s, 0.52 * s),   # 左下收窄
-    ]
-    draw.polygon(funnel, fill=FUNNEL)
+    # 3 rows (as small rounded pills)
+    row_h = max(2, round(size * 0.13))
+    row_w = round(size * 0.60)
+    x_left = round(size * 0.20)
+    x_right = x_left + row_w
+    ys = [round(size * 0.24), round(size * 0.50), round(size * 0.76)]
+    row_radius = max(1, row_h // 2)
+    for y in ys:
+        top = y - row_h // 2
+        bot = top + row_h
+        draw.rounded_rectangle([x_left, top, x_right, bot], radius=row_radius, fill=ROW)
 
-    # 底部小红点（表示"被过滤掉的东西"）
-    dot_r = max(1.0, s * 0.09)
-    cx, cy = 0.5 * s, 0.86 * s
-    draw.ellipse(
-        [cx - dot_r, cy - dot_r, cx + dot_r, cy + dot_r],
-        fill=DOT,
+    # Red strike-through on the middle row (thicker than the row itself)
+    strike_w = max(2, round(size * 0.09))
+    mid = ys[1]
+    pad = max(1, round(size * 0.06))
+    # Slight diagonal for a "canceled" feel
+    dx = round(size * 0.04)
+    draw.line(
+        [(x_left - pad, mid + dx), (x_right + pad, mid - dx)],
+        fill=STRIKE,
+        width=strike_w,
     )
     return img
 
