@@ -5,15 +5,13 @@
   const t = i18n.t;
 
   let currentConfig = null;
-  let sessionRevealed = new Set();     // 用户临时点了 "看一眼" 的 jobId
-  let showAllOverride = false;         // popup 里的 "暂时全部显示" 开关
+  let sessionRevealed = new Set();
+  let showAllOverride = false;
 
-  // 每张卡片处理后打的标记（值 = 处理时用的公司名，公司名变了要重新处理）
   const MARK_ATTR = 'data-jsf-processed';
   const HIDE_ATTR = 'data-jsf-hidden';
   const CARD_ID_ATTR = 'data-jsf-card-id';
 
-  // 从卡片提取一个稳定的 id：优先用 jobId，退回到 title|company
   const cardId = (info) => info.jobId || `${info.title || ''}|${info.company || ''}`;
 
   function applyCardDecision(cardRoot, info) {
@@ -21,18 +19,14 @@
     cardRoot.setAttribute(CARD_ID_ATTR, id);
 
     const marked = cardRoot.getAttribute(MARK_ATTR);
-    if (marked === info.company) {
-      // 已按当前公司名处理过，且状态未变 → 跳过
-      return;
-    }
+    if (marked === info.company) return;
     cardRoot.setAttribute(MARK_ATTR, info.company || '');
 
-    // 先清理上次可能加的注入元素（虚拟滚动可能复用同一 DOM 节点承担不同 jobId）
     cardRoot.querySelectorAll('.jsf-overlay').forEach((n) => n.remove());
     cardRoot.querySelectorAll('.jsf-quick-block').forEach((n) => n.remove());
     cardRoot.classList.remove('jsf-blocked', 'jsf-revealed');
 
-    if (!info.company) return; // 没提取到公司名 → 不动它
+    if (!info.company) return;
 
     const verdict = matcher.judge(info.company, currentConfig);
 
@@ -42,7 +36,6 @@
       return;
     }
 
-    // 屏蔽：折叠为一行灰条
     cardRoot.classList.add('jsf-blocked');
     const overlay = document.createElement('div');
     overlay.className = 'jsf-overlay';
@@ -82,7 +75,6 @@
   }
 
   function injectQuickBlockButton(cardRoot, info) {
-    // 不做「已存在则跳过」检查 —— 每次都重建，确保 click handler 里的 info 是最新的
     cardRoot.querySelectorAll('.jsf-quick-block').forEach((n) => n.remove());
     const btn = document.createElement('button');
     btn.type = 'button';
@@ -130,12 +122,22 @@
     return /^\/jobs(\/|$)/.test(location.pathname);
   }
 
+  // 检测是否未登录：LinkedIn 未登录访问 /jobs 会看到一个残缺的 job list，扩展的选择器会全部命不中。
+  function isLoggedOut() {
+    if (/^\/(authwall|login|checkpoint|signup|uas)(\/|$)/i.test(location.pathname)) return true;
+    const loginCta = document.querySelector(
+      'a[href*="/uas/login"], a[href*="/checkpoint/lg/login"], a[data-tracking-control-name*="sign-in" i]'
+    );
+    return !!loginCta;
+  }
+
   let _lastStatsKey = '';
   let _selectorFailedLoggedFor = '';
   function scanAndApply() {
     if (_contextDead) return;
     if (!currentConfig) return;
     if (!isOnJobsPage()) return;
+    if (isLoggedOut()) return;
 
     const { cards, selectorFailed, listContainer } = selectors.scanCards();
 
@@ -221,16 +223,18 @@
       return true;
     }
     if (msg && msg.type === 'jsf:ping') {
+      const onJobs = isOnJobsPage();
+      const loggedOut = onJobs && isLoggedOut();
       let matchedCount = 0;
       let selectorFailed = false;
-      if (isOnJobsPage() && currentConfig) {
+      if (onJobs && !loggedOut && currentConfig) {
         const r = selectors.scanCards();
         selectorFailed = r.selectorFailed;
         for (const c of r.cards) {
           if (matcher.judge(c.company, currentConfig).blocked) matchedCount++;
         }
       }
-      sendResponse({ ok: true, showAllOverride, matchedCount, selectorFailed });
+      sendResponse({ ok: true, onJobs, loggedOut, showAllOverride, matchedCount, selectorFailed });
       return true;
     }
   });
