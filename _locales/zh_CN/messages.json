@@ -1,6 +1,6 @@
 {
   "extensionName": { "message": "职位过滤器" },
-  "extensionDescription": { "message": "根据你自己的名单，在职位搜索里隐藏不想看到的公司。全程本地，支持公司名单、可选的关键词规则和白名单防误伤。适用于 LinkedIn 求人页面。" },
+  "extensionDescription": { "message": "在 LinkedIn 求人搜索里隐藏你不想看的公司。全程本地：名单 + 可选关键词规则 + 白名单。" },
 
   "popup_title": { "message": "职位过滤器" },
   "popup_blocked_label": { "message": "本页已隐藏" },
