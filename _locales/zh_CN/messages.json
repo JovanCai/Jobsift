@@ -7,6 +7,8 @@
   "popup_show_all": { "message": "暂时全部显示（本标签页）" },
   "popup_open_options": { "message": "打开设置" },
   "popup_warn_selectors": { "message": "职位列表结构可能已变化，扩展可能需要更新。" },
+  "popup_login_required": { "message": "请先登录 LinkedIn 再使用。" },
+  "popup_login_link": { "message": "打开 LinkedIn" },
 
   "options_subtitle": { "message": "在职位搜索里隐藏你不想看到的公司" },
 
