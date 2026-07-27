@@ -7,6 +7,8 @@
   "popup_show_all": { "message": "このタブでは全て表示" },
   "popup_open_options": { "message": "設定を開く" },
   "popup_warn_selectors": { "message": "求人リストのレイアウトが変わった可能性があります。拡張機能の更新をご確認ください。" },
+  "popup_login_required": { "message": "LinkedIn にサインインしてから使用してください。" },
+  "popup_login_link": { "message": "LinkedIn を開く" },
 
   "options_subtitle": { "message": "求人検索で見たくない会社を非表示にします" },
 
