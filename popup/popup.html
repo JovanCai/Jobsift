@@ -10,12 +10,17 @@
     <span class="title" data-i18n="popup_title"></span>
   </header>
 
+  <div id="login-required" class="notice" hidden>
+    <p data-i18n="popup_login_required"></p>
+    <a href="#" id="open-linkedin" data-i18n="popup_login_link"></a>
+  </div>
+
   <div id="status" class="status">
     <div class="count"><span id="count">–</span></div>
     <div class="count-label" data-i18n="popup_blocked_label"></div>
   </div>
 
-  <label class="switch">
+  <label id="show-all-row" class="switch">
     <input type="checkbox" id="show-all">
     <span data-i18n="popup_show_all"></span>
   </label>
