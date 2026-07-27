@@ -1,6 +1,6 @@
 {
   "extensionName": { "message": "求人リストフィルター" },
-  "extensionDescription": { "message": "求人検索の結果から、自分のリストに基づいて見たくない会社を非表示にします。すべてローカル処理。会社名リスト・オプションのキーワードルール・誤検出防止のホワイトリスト対応。LinkedIn求人ページで動作。" },
+  "extensionDescription": { "message": "LinkedIn求人検索から見たくない会社を非表示に。ローカル処理。会社名リスト・オプションのキーワード・ホワイトリスト。" },
 
   "popup_title": { "message": "求人リストフィルター" },
   "popup_blocked_label": { "message": "このページで非表示中" },
