@@ -1,6 +1,6 @@
 {
   "extensionName": { "message": "Job Feed Filter" },
-  "extensionDescription": { "message": "Personalize your job search by hiding companies you don't want to see. Fully local — a name list, optional keyword rules, and a whitelist to prevent false positives. Works on LinkedIn Jobs." },
+  "extensionDescription": { "message": "Hide companies from LinkedIn Jobs search results. Fully local — name list, optional keyword rules, whitelist." },
 
   "popup_title": { "message": "Job Feed Filter" },
   "popup_blocked_label": { "message": "hidden on this page" },
