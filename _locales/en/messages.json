@@ -7,6 +7,8 @@
   "popup_show_all": { "message": "Show all on this tab" },
   "popup_open_options": { "message": "Open settings" },
   "popup_warn_selectors": { "message": "The job list layout may have changed. The extension may need an update." },
+  "popup_login_required": { "message": "Sign in to LinkedIn to start filtering." },
+  "popup_login_link": { "message": "Open LinkedIn" },
 
   "options_subtitle": { "message": "Hide companies you don't want to see in your job search" },
 
