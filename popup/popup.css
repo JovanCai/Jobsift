@@ -46,6 +46,27 @@ header .title {
   border-radius: 4px;
   margin-bottom: 10px;
 }
+.notice {
+  background: #eef4fb;
+  border: 1px solid #b5cff0;
+  color: #124a86;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 8px 0;
+  text-align: center;
+}
+.notice p { margin: 0 0 6px; }
+.notice a {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #0a66c2;
+  color: #fff;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 12px;
+}
+.notice a:hover { opacity: 0.9; }
 .actions {
   text-align: right;
 }
