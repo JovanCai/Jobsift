@@ -1,6 +1,12 @@
 // Job Feed Filter —— 页面注入主脚本
 
 (function () {
+  // 防重入：如果 background 已经通过 chrome.scripting 注入过一次，
+  // manifest content_scripts 再次加载不应该重跑整个 IIFE（不然会有两个 MutationObserver 等）
+  if (self.__JSF && self.__JSF.__contentInitialized) return;
+  self.__JSF = self.__JSF || {};
+  self.__JSF.__contentInitialized = true;
+
   const { matcher, storage, selectors, i18n } = self.__JSF;
   const t = i18n.t;
 
