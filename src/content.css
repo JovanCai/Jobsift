@@ -90,11 +90,12 @@
 }
 
 /* 未屏蔽卡片右上角的一键屏蔽按钮 —— 模仿 LinkedIn 自身的 dismiss 按钮：
-   32×32、透明背景、无边框、hover 时圆形淡灰底 rgba(0,0,0,0.08) */
+   32×32、透明背景、无边框、hover 时圆形淡灰底 rgba(0,0,0,0.08)。
+   位置：X (top:6, h:32 → 结束在 y=38) 正下方，右对齐同一列，避免遮住标题末端 */
 .jsf-quick-block {
   position: absolute !important;
-  top: 6px !important;
-  right: 44px !important;   /* 让开 LinkedIn 自己的 ✕ dismiss 按钮 */
+  top: 44px !important;
+  right: 6px !important;
   z-index: 5 !important;
   width: 32px !important;
   height: 32px !important;
