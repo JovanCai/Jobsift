@@ -12,6 +12,12 @@
 
   "options_subtitle": { "message": "求人検索で見たくない会社を非表示にします" },
 
+  "settings_language": { "message": "表示言語:" },
+  "lang_auto": { "message": "自動（ブラウザに従う）" },
+  "lang_en": { "message": "English" },
+  "lang_zh_CN": { "message": "简体中文" },
+  "lang_ja": { "message": "日本語" },
+
   "tab_blacklist": { "message": "非表示リスト" },
   "tab_keywords": { "message": "キーワード" },
   "tab_whitelist": { "message": "常に表示" },
