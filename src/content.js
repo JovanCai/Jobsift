@@ -248,10 +248,13 @@
   (async () => {
     console.log('[JSF] content script loaded on', location.href);
     currentConfig = await storage.load();
-    console.log('[JSF] config loaded, blacklist:', currentConfig.blacklist, 'keywordsEnabled:', currentConfig.keywordsEnabled);
-    storage.onChange((newCfg) => {
+    await i18n.loadOverride(currentConfig.lang);
+    console.log('[JSF] config loaded, blacklist:', currentConfig.blacklist, 'keywordsEnabled:', currentConfig.keywordsEnabled, 'lang:', currentConfig.lang);
+    storage.onChange(async (newCfg) => {
+      const langChanged = newCfg.lang !== currentConfig.lang;
       currentConfig = newCfg;
-      purgeAllJsfState();
+      if (langChanged) await i18n.loadOverride(currentConfig.lang);
+      purgeAllJsfState();  // 会清掉所有 overlay + quick-block，rescan 时用新语言重建
       scheduleScan();
     });
     startObserver();
