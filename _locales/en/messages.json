@@ -12,6 +12,12 @@
 
   "options_subtitle": { "message": "Hide companies you don't want to see in your job search" },
 
+  "settings_language": { "message": "Display language:" },
+  "lang_auto": { "message": "Auto (follow browser)" },
+  "lang_en": { "message": "English" },
+  "lang_zh_CN": { "message": "简体中文" },
+  "lang_ja": { "message": "日本語" },
+
   "tab_blacklist": { "message": "Hide list" },
   "tab_keywords": { "message": "Keywords" },
   "tab_whitelist": { "message": "Always show" },
