@@ -1,5 +1,11 @@
 (async () => {
-  self.__JSF.i18n.applyI18n();
+  const { i18n, storage } = self.__JSF;
+
+  // 先读语言设置再 apply
+  const cfg = await storage.load();
+  await i18n.loadOverride(cfg.lang);
+  i18n.applyI18n();
+
   const $ = (s) => document.querySelector(s);
 
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -37,7 +43,6 @@
         }
       }
     } catch (_) {
-      // content script 不在这个页面
       $('#count').textContent = '–';
     }
   }
