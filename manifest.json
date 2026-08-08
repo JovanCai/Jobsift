@@ -41,5 +41,11 @@
   },
   "background": {
     "service_worker": "src/background.js"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["_locales/*/messages.json"],
+      "matches": ["*://*.linkedin.com/*"]
+    }
+  ]
 }
