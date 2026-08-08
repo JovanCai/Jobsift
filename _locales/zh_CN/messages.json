@@ -12,6 +12,12 @@
 
   "options_subtitle": { "message": "在职位搜索里隐藏你不想看到的公司" },
 
+  "settings_language": { "message": "显示语言：" },
+  "lang_auto": { "message": "自动（跟随浏览器）" },
+  "lang_en": { "message": "English" },
+  "lang_zh_CN": { "message": "简体中文" },
+  "lang_ja": { "message": "日本語" },
+
   "tab_blacklist": { "message": "隐藏名单" },
   "tab_keywords": { "message": "关键词" },
   "tab_whitelist": { "message": "总是显示" },
@@ -36,14 +42,14 @@
   "btn_delete": { "message": "删除" },
   "empty_list": { "message": "（空）" },
 
-  "toast_added": { "message": "已添加：$VAL$", "placeholders": { "val": { "content": "$1" } } },
-  "toast_deleted": { "message": "已删除：$VAL$", "placeholders": { "val": { "content": "$1" } } },
+  "toast_added": { "message": "已添加:$VAL$", "placeholders": { "val": { "content": "$1" } } },
+  "toast_deleted": { "message": "已删除:$VAL$", "placeholders": { "val": { "content": "$1" } } },
   "toast_kw_on": { "message": "关键词规则已启用" },
   "toast_kw_off": { "message": "关键词规则已关闭" },
   "toast_exported": { "message": "已导出" },
   "toast_imported": { "message": "已导入" },
   "toast_reset": { "message": "已重置" },
-  "toast_import_failed": { "message": "导入失败：$ERR$", "placeholders": { "err": { "content": "$1" } } },
+  "toast_import_failed": { "message": "导入失败:$ERR$", "placeholders": { "err": { "content": "$1" } } },
   "confirm_reset": { "message": "确定重置所有配置为默认？" },
 
   "overlay_blocked": { "message": "已隐藏" },
