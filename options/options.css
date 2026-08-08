@@ -18,7 +18,23 @@ header h1 {
 .sub {
   color: #666;
   font-size: 13px;
+  margin: 0 0 12px;
+}
+.lang-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0 0 20px;
+  font-size: 12px;
+  color: #666;
+}
+.lang-row select {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px;
+  background: #fff;
+  cursor: pointer;
 }
 
 .tabs {
