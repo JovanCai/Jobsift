@@ -16,6 +16,7 @@
     ],
     whitelist: [],
     keywordsEnabled: false,
+    lang: 'auto',   // 'auto' = follow Chrome UI language; or 'en' / 'zh_CN' / 'ja'
   };
 
   async function load() {
