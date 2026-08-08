@@ -8,6 +8,7 @@
   const els = {
     tabs: document.querySelectorAll('.tabs button'),
     sections: document.querySelectorAll('.tab'),
+    langSelect: $('#lang-select'),
     bl: { list: $('#bl-list'), input: $('#bl-input'), add: $('#bl-add') },
     kw: { list: $('#kw-list'), input: $('#kw-input'), add: $('#kw-add'), enabled: $('#kw-enabled') },
     wl: { list: $('#wl-list'), input: $('#wl-input'), add: $('#wl-add') },
@@ -70,6 +71,7 @@
       toast(t('toast_deleted', [v]));
     });
     els.kw.enabled.checked = !!cfg.keywordsEnabled;
+    els.langSelect.value = cfg.lang || 'auto';
   }
 
   function bindTabs() {
@@ -95,6 +97,16 @@
       cfg.keywordsEnabled = els.kw.enabled.checked;
       await storage.save(cfg);
       toast(cfg.keywordsEnabled ? t('toast_kw_on') : t('toast_kw_off'));
+    });
+  }
+
+  function bindLang() {
+    els.langSelect.addEventListener('change', async () => {
+      cfg.lang = els.langSelect.value;
+      await storage.save(cfg);
+      await i18n.loadOverride(cfg.lang);
+      i18n.applyI18n();
+      render();  // 重新渲染 delete 按钮文字 / 空列表提示等
     });
   }
 
@@ -139,17 +151,24 @@
   }
 
   (async () => {
-    i18n.applyI18n();
     cfg = await storage.load();
+    await i18n.loadOverride(cfg.lang);
+    i18n.applyI18n();
     render();
     bindTabs();
+    bindLang();
     bindAdd(els.bl.input, els.bl.add, 'blacklist');
     bindAdd(els.kw.input, els.kw.add, 'keywords');
     bindAdd(els.wl.input, els.wl.add, 'whitelist');
     bindKwEnabled();
     bindIO();
-    storage.onChange((newCfg) => {
+    storage.onChange(async (newCfg) => {
+      const langChanged = newCfg.lang !== cfg.lang;
       cfg = newCfg;
+      if (langChanged) {
+        await i18n.loadOverride(cfg.lang);
+        i18n.applyI18n();
+      }
       render();
     });
   })();
